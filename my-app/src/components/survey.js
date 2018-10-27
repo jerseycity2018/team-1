@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import { Button, FormGroup, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
+import { Button, ButtonToolbar, FormGroup, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
 
 class Survey extends Component {
   render() {
     return (
-        <div>
-            <Jumbotron>
-                <div class="intro-heading"><h1>Welcome to the Team!</h1></div>
-                <div class="intro-lead-in"><h3>Thank you for joining</h3></div>
-            </Jumbotron>
-            <ul>
-                THIS IS DA SURVEY
-            </ul>
-        </div>
+      <div>
+        <Jumbotron>
+          <h1> Survey </h1>
+        </Jumbotron>
+        <Jumbotron>
+          <h2> Are you from the United States? </h2>
+            <ButtonToolbar>
+              <Button bsSize="large" block>
+                Yes
+              </Button>
+              <Button bsSize="large" block>No</Button>
+            </ButtonToolbar>
+        </Jumbotron>
+      </div>
     )
   }
 }
