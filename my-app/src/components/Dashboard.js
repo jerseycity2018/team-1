@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SimpleMap from './Map';
 import { Button, ListGroup, ListGroupItem, FormGroup, Grid, Row, Col, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
 import MiniPie from './MiniPie';
 import { data, data1, data2 } from './data';
@@ -26,6 +27,7 @@ actPics['Sports'] = Sports;
 actPics['Zoo'] = Zoo;
 actPics['Other'] = Other;
 actPics['Walk'] = Walk;
+
 
 
 class Dashboard extends Component {
@@ -180,7 +182,8 @@ class Dashboard extends Component {
               </ul>
             </Col>
           </Row>
-        </Grid>
+        </Grid>  
+        <SimpleMap />
       </div>
     );
   }
