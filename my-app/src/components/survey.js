@@ -134,16 +134,15 @@ handleCase = (param) => {
             renderEnd: true,
             renderTitle: false
         })
-        
+
         default:
     }
 }
 
 getValidationState() {
   const length = this.state.value.length;
-  if (length > 10) return 'success';
-  else if (length > 5) return 'warning';
-  else if (length > 0) return 'error';
+  if (length === 10) return 'success';
+  else if (length !== 5) return 'error';
   return null;
 }
 
@@ -156,12 +155,13 @@ handleChange(e) {
     return (
       <div>
         {this.state.renderTitle ?(
-            <h1> Survey </h1>
+            <h1 style={{textAlign:"center"}}> Central Park Visitor Survery </h1>
         ):<div></div>}
+        <h5 style={{textAlign:"center"}}> Please help us complete this survey to help us understand your visit to Central Park so that we can make this a better place for you! </h5>
         {this.state.renderStates ?(
             <div>
             <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                <h2 style={{color:"white"}}> Are you from the United States? </h2>
+                <h2 style={{color:"white", textAlign:"center"}}> Are you from the United States? </h2>
                 <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                     <Button onClick={()=>this.handleClick(1, 'states','yes')} bsSize="large" block>Yes</Button>
                     <Button onClick={()=>this.handleClick(2, 'states','no')} bsSize="large" block>No</Button>
@@ -174,21 +174,24 @@ handleChange(e) {
         {this.state.renderZipcode ?(
         <div>
             <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                <h2 style={{color:"white"}}> What is your Zip Code? </h2>
+                <h2 style={{color:"white",textAlign:"center"}}> What is your Zip Code? </h2>
                 <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                 <form>
                     <FormGroup
                     controlId="formBasicText"
                     validationState={this.getValidationState()}
                     >
-                    <FormControl 
+                    <FormControl
                     componentClass="input"
                     placeholder="Enter Zipcode"
                     inputRef={(ref) => {this.input = ref}}>
                     </FormControl>
                     </FormGroup>
                 </form>
-                <button onClick={()=>this.handleClick(3, 'zipcode', this.input.value)}>Enter</button>
+                <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
+                    <Button onClick={()=>this.handleClick(3, 'zipcode', this.input.value)} bsSize="large" block>Enter</Button>
+                </div>
+
                 </div>
             </Jumbotron>
         </div>
@@ -197,7 +200,8 @@ handleChange(e) {
         {this.state.renderCountry ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> What country are you from? </h2>
+          <h2 style={{color:"white", textAlign:"center"}}> What country are you from? </h2>
+          <div style={{width:"50%", marginLeft:"42%" , marginright:"42%"}}>
           <SplitButton title="Choose a Country" onSelect={(evt)=>this.handleClick(4, 'country', evt)} pullRight id="split-button-pull-right" bsSize="large">
           <MenuItem eventKey="Afghanistan">Afghanistan</MenuItem>
           <MenuItem eventKey="Australia">Australia</MenuItem>
@@ -220,6 +224,7 @@ handleChange(e) {
           <MenuItem eventKey="Iran">Iran</MenuItem>
           <MenuItem eventKey="Japan">Japan</MenuItem>
           </SplitButton>
+          </div>
         </Jumbotron>
         </div>
         ):<div></div>}
@@ -227,7 +232,7 @@ handleChange(e) {
         {this.state.renderGroup ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> Are you alone or with a group? </h2>
+          <h2 style={{color:"white", textAlign:"center"}}> Are you alone or with a group? </h2>
             <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
               <Button  onClick={()=>this.handleClick(5, 'group', 'Alone')} bsSize="large"  block>Alone</Button>
               <Button  onClick={()=>this.handleClick(5, 'group', 'Group')} bsSize="large" block>Group</Button>
@@ -239,57 +244,61 @@ handleChange(e) {
         {this.state.renderPeople ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-           <h2 style={{color:"white"}}> How many people? (Including you) </h2>
+           <h2 style={{color:"white", textAlign:"center"}}> How many people? (Including you) </h2>
            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
            <form>
-           <FormControl 
+           <FormControl
                 componentClass="input"
                 placeholder="Enter Group Size"
                 inputRef={(ref) => {this.input = ref}}>
             </FormControl>
         </form>
-            <button onClick={()=>this.handleClick(6, 'people', this.input.value)}>Enter</button>
+        <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
+            <Button onClick={()=>this.handleClick(6, 'people', this.input.value)} block>Enter</Button>
+            </div>
         </div>
         </Jumbotron>
         </div>
         ):<div></div>}
-        
+
         {this.state.renderPlaces ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-            <h2 style={{color:"white"}}> What places did you visit? </h2>
-            <FormGroup style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
+            <h2 style={{color:"white", textAlign:"center"}}> What places did you visit? </h2>
+            <FormGroup style={{marginLeft:"25%", marginRight:"25%"}}>
             <Row className="show-grid">
-               <Col md={6} sm={6}>
+               <Col md={6} sm={6} style={{marginLeft:"25%", marginRight:"25%"}} >
                <ToggleButtonGroup
                 type="checkbox"
                 value={this.state.value}
                 onChange={this.handleChange}
                 >
-                <ToggleButton value={'Cherry Hill'}>Cherry Hill</ToggleButton>
-                <ToggleButton value={'Strawberry Fields (Imagine Mosaic)'}>Strawberry Fields (Imagine Mosaic)</ToggleButton>
-                <ToggleButton value={'Bow Bridge'}>Bow Bridge</ToggleButton>
-                <ToggleButton value={'Shakespeare Garden'}>Shakespeare Garden</ToggleButton>
-                <ToggleButton value={'The Pool'}>The Pool</ToggleButton>
-                <ToggleButton value={'The Loch'}>The Loch</ToggleButton>
+                <ToggleButton style={{margin:"5px"}} value={'Cherry Hill'}>Cherry Hill</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Strawberry Fields (Imagine Mosaic)'}>Strawberry Fields (Imagine Mosaic)</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Bow Bridge'}>Bow Bridge</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Shakespeare Garden'}>Shakespeare Garden</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'The Pool'}>The Pool</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'The Loch'}>The Loch</ToggleButton>
                 <br>
                 </br>
                 <br></br>
-                <ToggleButton value={'The Ravine'}>The Ravine</ToggleButton>
-                <ToggleButton value={'The Mall (Literary Walk)'}>The Mall (Literary Walk)</ToggleButton>
-                <ToggleButton value={'Balto'}>Balto</ToggleButton>
-                <ToggleButton value={'Bethesda Terrace (Bethesda Fountain)'}>Bethesda Terrace (Bethesda Fountain)</ToggleButton>
-                <ToggleButton value={'Alice in Wonderland'}>Alice in Wonderland</ToggleButton>
-                <ToggleButton value={'Conservatory Water'}>Conservatory Water</ToggleButton>
-                <ToggleButton value={'Obelisk (Cleopatra`s Needle)'}>Obelisk (Cleopatra`s Needle)</ToggleButton>
-                <ToggleButton value={'Reservoir'}>Reservoir</ToggleButton>
-                <ToggleButton value={'Conservatory Garden'}>Conservatory Garden</ToggleButton>
-                <ToggleButton value={'The Harlem Meer'}>The Harlem Meer</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'The Ravine'}>The Ravine</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'The Mall (Literary Walk)'}>The Mall (Literary Walk)</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Balto'}>Balto</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Bethesda Terrace (Bethesda Fountain)'}>Bethesda Terrace (Bethesda Fountain)</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Alice in Wonderland'}>Alice in Wonderland</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Conservatory Water'}>Conservatory Water</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Obelisk (Cleopatra`s Needle)'}>Obelisk (Cleopatra`s Needle)</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Reservoir'}>Reservoir</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Conservatory Garden'}>Conservatory Garden</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'The Harlem Meer'}>The Harlem Meer</ToggleButton>
                 </ToggleButtonGroup>
                 </Col>
             </Row>
             </FormGroup>
-            <button onClick={()=>this.handleClick(7, 'places', this.state.value)}>Enter</button>
+            <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
+            <Button onClick={()=>this.handleClick(7, 'places', this.state.value)} block>Enter</Button>
+            </div>
         </Jumbotron>
         </div>
         ):<div></div>}
@@ -297,30 +306,32 @@ handleChange(e) {
         {this.state.renderActivities ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> What activities did you do? </h2>
+          <h2 style={{color:"white", textAlign:"center"}}> What activities did you do? </h2>
           <FormGroup style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
           <Row className="show-grid">
-               <Col sm={5} md={5}>
+               <Col sm={5} md={5} style={{marginLeft:"25%", marginRight:"25%"}} >
                <ToggleButtonGroup
                 type="checkbox"
                 value={this.state.value}
                 onChange={this.handleChange}
                 >
-                <ToggleButton value={'Bicycle Rentals'}>Bicycle Rentals</ToggleButton>
-                <ToggleButton value={'Boating'}>Boating</ToggleButton>
-                <ToggleButton value={'Ice Skating'}>Ice Skating</ToggleButton>
-                <ToggleButton value={'Swimming'}>Swimming</ToggleButton>
-                <ToggleButton value={'Zoo'}>Zoo</ToggleButton>
-                <ToggleButton value={'Walk dog(s)'}>Walk dog(s)</ToggleButton>
-                <ToggleButton value={'Picnic'}>Picnic</ToggleButton>
-                <ToggleButton value={'Play sports'}>Play sports</ToggleButton>
-                <ToggleButton value={'Walk'}>Walk</ToggleButton>
-                <ToggleButton value={'Bike'}>Bike</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Bicycle Rentals'}>Bicycle Rentals</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Boating'}>Boating</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Ice Skating'}>Ice Skating</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Swimming'}>Swimming</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Zoo'}>Zoo</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Walk dog(s)'}>Walk dog(s)</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Picnic'}>Picnic</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Play sports'}>Play sports</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Walk'}>Walk</ToggleButton>
+                <ToggleButton style={{margin:"5px"}}value={'Bike'}>Bike</ToggleButton>
                 </ToggleButtonGroup>
                 </Col>
             </Row>
             </FormGroup>
-            <button onClick={()=>this.handleClick(8, 'activities', this.state.value)}>Enter</button>
+            <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
+            <Button onClick={()=>this.handleClick(8, 'activities', this.state.value)} block>Enter</Button>
+            </div>
         </Jumbotron>
         </div>
         ):<div></div>}
@@ -328,7 +339,7 @@ handleChange(e) {
         {this.state.renderStay ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> How long did you stay for/plan to stay for? </h2>
+          <h2 style={{color:"white", textAlign:"center"}}> How long did you stay for/plan to stay for? </h2>
           <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
             <Button onClick={()=>this.handleClick(9, 'stay', '1 hour')} bsSize="large" block>1 hour</Button>
             <Button onClick={()=>this.handleClick(9, 'stay', '2 hour')} bsSize="large" block>2 hours</Button>
@@ -343,25 +354,27 @@ handleChange(e) {
         {this.state.renderTravel ?(
             <div>
                 <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                <h2 style={{color:"white"}}> How did you get to Central Park? </h2><div>
+                <h2 style={{color:"white", textAlign:"center"}}> How did you get to Central Park? (Select all that apply) </h2><div>
                     <FormGroup style={{marginLeft:"25%" , marginright:"25%"}}>
                     <ButtonToolbar>
-                        <ToggleButtonGroup 
-                        defaultValue={[1, 6]}                
+                        <ToggleButtonGroup
+                        defaultValue={[1, 6]}
                         type="checkbox"
                         value={this.state.value}
                         onChange={this.handleChange}>
-                        <ToggleButton value={'Subway'}>Subway</ToggleButton>
-                        <ToggleButton value={'Long Island Railroad (LIRR)'}>Long Island Railroad (LIRR)</ToggleButton>
-                        <ToggleButton value={'Walking'}>Walking</ToggleButton>
-                        <ToggleButton value={'Car'}>Car</ToggleButton>
-                        <ToggleButton value={'Biking'}>Biking</ToggleButton>
-                        <ToggleButton value={'Other'}>Other</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Subway'}>Subway</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Long Island Railroad (LIRR)'}>Long Island Railroad (LIRR)</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Walking'}>Walking</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Car'}>Car</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Biking'}>Biking</ToggleButton>
+                        <ToggleButton style={{margin:"5px"}}value={'Other'}>Other</ToggleButton>
                         </ToggleButtonGroup>
                     </ButtonToolbar>
                     </FormGroup>
                     </div>
-                    <button onClick={()=>this.handleClick(10, 'travel', this.state.value)}>Enter</button>    
+                    <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
+                    <Button onClick={()=>this.handleClick(10, 'travel', this.state.value)} block>Enter</Button>
+                    </div>
                 </Jumbotron>
             </div>
         ):<div></div>}
@@ -369,7 +382,7 @@ handleChange(e) {
         {this.state.renderAge ?(
             <div>
                 <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                    <h2 style={{color:"white"}}> Age </h2>
+                    <h2 style={{color:"white", textAlign:"center"}}> Age </h2>
                     <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                         <Button onClick={()=>this.handleClick(11, 'age', '0-15')}  bsSize="large" block>0-15</Button>
                         <Button onClick={()=>this.handleClick(11, 'age', '15-24')}  bsSize="large" block>15-24</Button>
@@ -385,7 +398,7 @@ handleChange(e) {
         {this.state.renderGender ?(
             <div>
                 <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                    <h2 style={{color:"white"}}> Gender </h2>
+                    <h2 style={{color:"white", textAlign:"center"}}> Gender </h2>
                     <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                         <Button onClick={()=>this.handleClick(12, 'gender', 'Male')}  bsSize="large" block>Male</Button>
                         <Button onClick={()=>this.handleClick(12, 'gender', 'Female')} bsSize="large" block>Female</Button>
@@ -395,11 +408,11 @@ handleChange(e) {
                 </Jumbotron>
             </div>
         ):<div></div>}
-        
+
         {this.state.renderEthnicity ?(
             <div>
                 <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                    <h2 style={{color:"white"}}> Ethnicity </h2>
+                    <h2 style={{color:"white", textAlign:"center"}}> Ethnicity </h2>
                     <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                         <Button onClick={()=>this.handleClick(13, 'ethnicity', 'White')} bsSize="large" block>White</Button>
                         <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Hispanic or Latino')} bsSize="large" block>Hispanic or Latino</Button>
@@ -416,18 +429,20 @@ handleChange(e) {
         {this.state.renderComments ?(
             <div>
                 <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-                    <h2 style={{color:"white"}}> Further Comments </h2>
+                    <h2 style={{color:"white", textAlign:"center"}}> What do you love about Central Park? </h2>
                     <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
                         <br></br>
                         <FormGroup controlId="formControlsTextarea">
                             <ControlLabel></ControlLabel>
-                            <FormControl 
+                            <FormControl
                             componentClass="textarea"
                             placeholder="Comments"
                             inputRef={(ref) => {this.input = ref}}>
                             </FormControl>
                         </FormGroup>
+                        <div style={{width:"30%", marginLeft:"35%" , marginright:"35%"}}>
                         <Button onClick={()=>this.handleClick(14, 'comments', this.input.value)} bsSize="large" block>Submit</Button>
+                        </div>
                     </div>
                 </Jumbotron>
             </div>
@@ -435,7 +450,7 @@ handleChange(e) {
 
         {this.state.renderEnd ?(
         <div>
-            <h1>Thank You For Completing Our Servey!</h1>
+            <h1>Thank You For Completing Our Survey!</h1>
             <br></br>
             <p>insert button</p>
         </div>
