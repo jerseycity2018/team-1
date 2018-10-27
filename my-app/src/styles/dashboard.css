@@ -1,8 +1,8 @@
 .border{
   border-style: solid;
-  border-width: thin;
-  border-color: gray;
-  box-shadow: 0 4px 2px -2px gray;
+  border-width: 2px;
+  border-color: #3abb48;
+  border-radius: 25px;
 }
 
 .headerstyle{
