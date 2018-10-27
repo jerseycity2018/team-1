@@ -20,4 +20,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/my-app/package-lock.json
+package-lock.json
