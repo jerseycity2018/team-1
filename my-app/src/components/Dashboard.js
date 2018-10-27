@@ -12,6 +12,7 @@ class Dashboard extends Component {
         </header>
         </div>
         <Grid>
+
           <Row className="show-grid" className="border">
             <Col md={12}>
               <code>{'<Col md={12} />'}</code>
@@ -21,7 +22,7 @@ class Dashboard extends Component {
             <Col xs={12} md={3} className="border">
               <code>{'<Col xs={12} md={4} />'}</code>
             </Col>
-            <Col xs={12} md={3} mdOffset={1} className="border">
+            <Col xs={12} md={4} xsOffset={1} className="border">
               <code>{'<Col xs={12} md={4} />'}</code>
             </Col>
             <Col xs={12} md={3} mdOffset={1} className="border">
