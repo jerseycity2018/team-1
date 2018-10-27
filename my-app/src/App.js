@@ -4,8 +4,8 @@ import { Button, FormGroup, FieldGroup, FormControl, ControlLabel, Jumbotron } f
 import logo from './logo.svg';
 import './App.css';
 import HomePage from './components/HomePage';
+import Dashboard from  './components/Dashboard';
 import Survey from './components/survey';
-
 
 class App extends Component {
   render() {
