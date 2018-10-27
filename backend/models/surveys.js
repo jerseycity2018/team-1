@@ -6,13 +6,14 @@ module.exports = (sequelize, DataTypes) => {
     country: DataTypes.TEXT,
     aloneOrGroup: DataTypes.TEXT,
     people: DataTypes.INTEGER,
-    placeGone: DataTypes.TEXT,
-    howLong: DataTypes.TEXT,
-    howArrived: DataTypes.TEXT,
+    location: DataTypes.TEXT,
+    duration: DataTypes.TEXT,
+    transportation: DataTypes.TEXT,
     age: DataTypes.INTEGER,
     ethnicity: DataTypes.TEXT,
     gender: DataTypes.TEXT,
-    activities: DataTypes.TEXT
+    activities: DataTypes.TEXT,
+    weather: DataTypes.TEXT,
   });
 
   return Surveys;

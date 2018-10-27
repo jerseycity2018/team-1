@@ -1,5 +1,6 @@
 const express = require('express');
 const models = require('../models');
+const Sequelize = require('sequelize');
 const router = express.Router();
 
 const ig = require('instagram-node').instagram();
@@ -29,6 +30,19 @@ router.get('/cpLocations/:id', (req, res) => {
   });
 });
 
+router.get('/cpLocations/:id/photos', (req, res) => {
+  let options = {};
+  ig.location_media_recent(req.params.id, [options,],  function(err, result, remaining, limit) {
+    let sentimentMap = result.map((post) => {
+      if (post.images) {
+        return post.images;
+      }
+      else return {};
+    });
+    res.json(sentimentMap);
+  });
+});
+
 router.get('/cpLocations/:id/sentiment', (req, res) => {
   let options = {};
   ig.location_media_recent(req.params.id, [options,],  function(err, result, remaining, limit) {
@@ -55,7 +69,7 @@ router.get('/survey', (req, res) => {
 });
 
 router.post('/survey', (req, res) => {
-  models.Surveys.create({
+  models.Surveys.create(/*{
     zipcode: req.body.zipcode,
     state: req.body.state,
     country: req.body.country,
@@ -68,7 +82,7 @@ router.post('/survey', (req, res) => {
     ethnicity: req.body.ethnicity,
     gender: req.body.gender,
     activities: req.body.activities
-  }/*
+  }*/
   {
     zipcode: "10010",
     city: "New York",
@@ -76,14 +90,15 @@ router.post('/survey', (req, res) => {
     country: "US",
     aloneOrGroup: "Alone",
     people: "1",
-    placeGone: "Bethesda Fountain",
-    howLong: "30 Minutes",
-    howArrived: "Walked",
-    age: "20",
+    location: "Bethesda Fountain",
+    duration: "30 Minutes",
+    transportation: "Walked",
+    age: "21",
     ethnicity: "Asian",
     gender: "Male",
-    activities: "Photography"
-  }*/)
+    activities: "Photography",
+    weather: "Sunny"
+  })
   .then((data) => {
     res.json({
       msg: "Successfully Inserted Surveys"
@@ -93,10 +108,86 @@ router.post('/survey', (req, res) => {
 
 router.delete('/survey', (req, res) => {
   models.Surveys.destroy({where: {}}).then(function () {
+    models.Surveys.drop();
     res.json({
       msg: "Deleted All Surveys",
     });
   });
 });
+/*
+Need Routes Each for:
+- age
+- gender
+- ethnicity
+- location
+- activity
+- time
+- group
+*/
 
+router.get('/ages', (req, res) => {
+  models.Surveys.findAll({
+    group: ['age'],
+    attributes: ['age',[Sequelize.fn('COUNT', Sequelize.col('age')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/gender', (req, res) => {
+  models.Surveys.findAll({
+    group: ['gender'],
+    attributes: ['gender',[Sequelize.fn('COUNT', Sequelize.col('gender')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/ethnicity', (req, res) => {
+  models.Surveys.findAll({
+    group: ['ethnicity'],
+    attributes: ['ethnicity',[Sequelize.fn('COUNT', Sequelize.col('ethnicity')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/location', (req, res) => {
+  models.Surveys.findAll({
+    group: ['location'],
+    attributes: ['location',[Sequelize.fn('COUNT', Sequelize.col('location')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/activity', (req, res) => {
+  models.Surveys.findAll({
+    group: ['activity'],
+    attributes: ['activity',[Sequelize.fn('COUNT', Sequelize.col('activity')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/group', (req, res) => {
+  models.Surveys.findAll({
+    group: ['group'],
+    attributes: ['group',[Sequelize.fn('COUNT', Sequelize.col('group')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
 module.exports = router;
