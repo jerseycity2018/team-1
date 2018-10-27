@@ -10,17 +10,15 @@ import Map from './components/Map';
 
 class App extends Component {
   render() {
-    let old = (
+    return(
       <Router>
       <div>
         <Route name="app" exact path="/" component={HomePage} />
         <Route exact path="/survey" component={Survey} />
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/map" component={Map} />
       </div>
       </Router>
     );
-    return (<Dashboard />);
   }
 }
 
