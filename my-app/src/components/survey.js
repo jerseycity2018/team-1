@@ -3,18 +3,14 @@ import { Button, ButtonToolbar, FormGroup, FormControl, ControlLabel, Jumbotron,
  } from "react-bootstrap";
 
 class Survey extends Component {
-state = {
-    next: false,
-}
+  constructor(props, context) {
+  super(props, context);
 
-click = (param) =>{
-    switch(param){
-        case 1:
-        return this.setState({
-            next: true
-        });
-        default:
-    }
+  this.handleChange = this.handleChange.bind(this);
+
+  this.state = {
+    value: ''
+  };
 }
 
 getValidationState() {
@@ -25,6 +21,9 @@ getValidationState() {
   return null;
 }
 
+handleChange(e) {
+  this.setState({ value: e.target.value });
+}
 
   render() {
     return (
