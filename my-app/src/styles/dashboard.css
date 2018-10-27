@@ -20,3 +20,7 @@
 .subtitles{
   text-decoration: underline;
 }
+
+.chart{
+  width: 33%;
+}

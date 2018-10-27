@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, Grid, Row, Col, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
+import MiniPie from './MiniPie';
+import { data, data1, data2 } from './data';
 import './../styles/dashboard.css';
-import PieChart from 'react-minimal-pie-chart';
-
-
 
 class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
+  componentDidMount() {
+  }
+
   render() {
     return (
       <div>
@@ -16,24 +25,21 @@ class Dashboard extends Component {
         </div>
         <Grid className="top-buffer">
           <Row className="show-grid" className="border ">
-            <Col md={12}>
               <h4 className="subtitles">Demographics</h4>
-              <div>
-              <PieChart
-                data={[
-                  { value: 10, color: '#E38627' },
-                  { value: 15, color: '#C13C37' },
-                  { value: 20, color: '#6A2135' },
-                ]}
-                lengthAngle={-360}
-                animate
-              />
-              </div>
-              <div>
-              </div>
-              <div>
-              </div>
-            </Col>
+              <Col xs={12} md={5}>
+                <h4>ETHNICITY</h4>
+                <MiniPie width={370} height={270} data={data}/>
+              </Col>
+              <Col xs={12} md={5} xsOffset={2}>
+                <h4>AGE</h4>
+                <MiniPie width={370} height={270} data={data1}/>
+              </Col>
+              <Row className="show-grid">
+                <Col md={12}>
+                  <h4>GENDER</h4>
+                  <MiniPie width={370} height={270} data={data2}/>
+                </Col>
+              </Row>
           </Row>
           <Row className="top-buffer">
             <Col xs={12} md={3} className="border">
