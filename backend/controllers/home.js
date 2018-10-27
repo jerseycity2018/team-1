@@ -1,5 +1,6 @@
 const express = require('express');
 const models = require('../models');
+const Sequelize = require('sequelize');
 const router = express.Router();
 
 const ig = require('instagram-node').instagram();
@@ -8,6 +9,10 @@ ig.use({ access_token: igAccess });
 
 const Sentiment = require('sentiment');
 var sentiment = new Sentiment();
+
+/*
+INSTAGRAM-RELATED ROUTES
+*/
 
 router.get('/cpLocations', (req, res) => {
   let options = {};
@@ -25,6 +30,19 @@ router.get('/cpLocations/:id', (req, res) => {
   });
 });
 
+router.get('/cpLocations/:id/photos', (req, res) => {
+  let options = {};
+  ig.location_media_recent(req.params.id, [options,],  function(err, result, remaining, limit) {
+    let sentimentMap = result.map((post) => {
+      if (post.images) {
+        return post.images;
+      }
+      else return {};
+    });
+    res.json(sentimentMap);
+  });
+});
+
 router.get('/cpLocations/:id/sentiment', (req, res) => {
   let options = {};
   ig.location_media_recent(req.params.id, [options,],  function(err, result, remaining, limit) {
@@ -39,6 +57,137 @@ router.get('/cpLocations/:id/sentiment', (req, res) => {
   });
 });
 
+/*
+SURVEY-RELATED ROUTES
+*/
+router.get('/survey', (req, res) => {
+  models.Surveys.findAll().then(surveys => {
+    res.json({
+      surveys: surveys
+    });
+  });
+});
 
+router.post('/survey', (req, res) => {
+  models.Surveys.create(/*{
+    zipcode: req.body.zipcode,
+    state: req.body.state,
+    country: req.body.country,
+    aloneOrGroup: req.body.aloneOrGroup,
+    people: req.body.people,
+    placeGone: req.body.placeGone,
+    howLong: req.body.howLong,
+    howArrived: req.body.howArrived,
+    age: req.body.age,
+    ethnicity: req.body.ethnicity,
+    gender: req.body.gender,
+    activities: req.body.activities
+  }*/
+  {
+    zipcode: "10010",
+    city: "New York",
+    state: "NY",
+    country: "US",
+    aloneOrGroup: "Alone",
+    people: "1",
+    location: "Bethesda Fountain",
+    duration: "30 Minutes",
+    transportation: "Walked",
+    age: "21",
+    ethnicity: "Asian",
+    gender: "Male",
+    activities: "Photography",
+    weather: "Sunny"
+  })
+  .then((data) => {
+    res.json({
+      msg: "Successfully Inserted Surveys"
+    });
+  });
+});
 
+router.delete('/survey', (req, res) => {
+  models.Surveys.destroy({where: {}}).then(function () {
+    models.Surveys.drop();
+    res.json({
+      msg: "Deleted All Surveys",
+    });
+  });
+});
+/*
+Need Routes Each for:
+- age
+- gender
+- ethnicity
+- location
+- activity
+- time
+- group
+*/
+
+router.get('/ages', (req, res) => {
+  models.Surveys.findAll({
+    group: ['age'],
+    attributes: ['age',[Sequelize.fn('COUNT', Sequelize.col('age')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/gender', (req, res) => {
+  models.Surveys.findAll({
+    group: ['gender'],
+    attributes: ['gender',[Sequelize.fn('COUNT', Sequelize.col('gender')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/ethnicity', (req, res) => {
+  models.Surveys.findAll({
+    group: ['ethnicity'],
+    attributes: ['ethnicity',[Sequelize.fn('COUNT', Sequelize.col('ethnicity')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/location', (req, res) => {
+  models.Surveys.findAll({
+    group: ['location'],
+    attributes: ['location',[Sequelize.fn('COUNT', Sequelize.col('location')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/activity', (req, res) => {
+  models.Surveys.findAll({
+    group: ['activity'],
+    attributes: ['activity',[Sequelize.fn('COUNT', Sequelize.col('activity')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/group', (req, res) => {
+  models.Surveys.findAll({
+    group: ['group'],
+    attributes: ['group',[Sequelize.fn('COUNT', Sequelize.col('group')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
 module.exports = router;
