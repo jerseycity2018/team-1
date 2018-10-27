@@ -10,6 +10,8 @@ ig.use({ access_token: igAccess });
 const Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
+var moment = require('moment');
+moment().format();
 /*
 INSTAGRAM-RELATED ROUTES
 */
@@ -69,6 +71,10 @@ router.get('/survey', (req, res) => {
 });
 
 router.post('/survey', (req, res) => {
+  /*
+  console.log(moment().hour());
+  console.log(moment().hours());
+  */
   models.Surveys.create(/*{
     zipcode: req.body.zipcode,
     state: req.body.state,
@@ -81,7 +87,8 @@ router.post('/survey', (req, res) => {
     age: req.body.age,
     ethnicity: req.body.ethnicity,
     gender: req.body.gender,
-    activities: req.body.activities
+    activities: req.body.activities,
+    hour:
   }*/
   {
     zipcode: "10010",
@@ -89,15 +96,16 @@ router.post('/survey', (req, res) => {
     state: "NY",
     country: "US",
     aloneOrGroup: "Alone",
-    people: "1",
-    location: "Bethesda Fountain",
+    group: 1,
+    places: ["Bethesda Fountain"],
     duration: "30 Minutes",
     transportation: "Walked",
-    age: "21",
+    age: 21,
     ethnicity: "Asian",
     gender: "Male",
-    activities: "Photography",
-    weather: "Sunny"
+    activity: "Photography",
+    weather: "Sunny",
+    hour: 11
   })
   .then((data) => {
     res.json({
@@ -158,10 +166,10 @@ router.get('/ethnicity', (req, res) => {
   });
 });
 
-router.get('/location', (req, res) => {
+router.get('/places', (req, res) => {
   models.Surveys.findAll({
-    group: ['location'],
-    attributes: ['location',[Sequelize.fn('COUNT', Sequelize.col('location')), 'total']]
+    group: ['places'],
+    attributes: ['places',[Sequelize.fn('COUNT', Sequelize.col('places')), 'total']]
   }).then(data => {
     res.json({
       data: data
@@ -190,4 +198,50 @@ router.get('/group', (req, res) => {
     });
   });
 });
+
+router.get('/time', (req, res) => {
+  models.Surveys.findAll({
+    group: ['hour'],
+    attributes: ['hour',[Sequelize.fn('COUNT', Sequelize.col('hour')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/origin', (req, res) => {
+  models.Surveys.findAll({
+    group: ['country'],
+    attributes: ['country',[Sequelize.fn('COUNT', Sequelize.col('country')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/origin', (req, res) => {
+  models.Surveys.findAll({
+    group: ['country'],
+    attributes: ['country',[Sequelize.fn('COUNT', Sequelize.col('country')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+router.get('/states', (req, res) => {
+  models.Surveys.findAll({
+    group: ['state'],
+    attributes: ['state',[Sequelize.fn('COUNT', Sequelize.col('state')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+
 module.exports = router;

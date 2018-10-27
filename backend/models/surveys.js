@@ -5,15 +5,16 @@ module.exports = (sequelize, DataTypes) => {
     state: DataTypes.TEXT,
     country: DataTypes.TEXT,
     aloneOrGroup: DataTypes.TEXT,
-    people: DataTypes.INTEGER,
-    location: DataTypes.TEXT,
+    group: DataTypes.INTEGER,
+    places: DataTypes.ARRAY(DataTypes.TEXT),
     duration: DataTypes.TEXT,
     transportation: DataTypes.TEXT,
     age: DataTypes.INTEGER,
     ethnicity: DataTypes.TEXT,
     gender: DataTypes.TEXT,
-    activities: DataTypes.TEXT,
+    activity: DataTypes.TEXT,
     weather: DataTypes.TEXT,
+    hour: DataTypes.INTEGER
   });
 
   return Surveys;
