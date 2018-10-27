@@ -12,8 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     ethnicity: DataTypes.TEXT,
     gender: DataTypes.TEXT,
-    activities: DataTypes.TEXT,
+    activity: DataTypes.TEXT,
     weather: DataTypes.TEXT,
+    hour: DataTypes.INTEGER
   });
 
   return Surveys;
