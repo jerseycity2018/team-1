@@ -20,3 +20,7 @@
 .subtitles{
   text-decoration: underline;
 }
+
+ol{
+  width: 25%;
+}
