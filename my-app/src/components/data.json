@@ -1,0 +1,58 @@
+{
+  "data": [
+    {
+      "text": "ASIANS",
+      "value": 50,
+      "color": "yellow"
+    },
+    {
+      "text": "Black",
+      "value": 32,
+      "color": "black"
+    },
+    {
+      "text": "Other",
+      "value": 12,
+      "color": "green"
+    }
+  ],
+  "data1": [
+    {
+      "text": "1-15",
+      "value": 50,
+      "color": "orange"
+    },
+    {
+      "text": "16-40",
+      "value": 78,
+      "color": "pink"
+    },
+    {
+      "text": "40+",
+      "value": 12,
+      "color": "blue"
+    }
+  ],
+  "data2": [
+    {
+      "text": "Female",
+      "value": 70,
+      "color": "red"
+    },
+    {
+      "text": "Male",
+      "value": 60,
+      "color": "purple"
+    },
+    {
+      "text": "Other",
+      "value": 40,
+      "color": "gold"
+    },
+    {
+      "text": "Prefer to not disclose",
+      "value": 30,
+      "color": "gray"
+    }
+  ]
+}
