@@ -92,7 +92,7 @@ class Dashboard extends Component {
 
     let listWeather = this.state.weather.map((weather) => {
         return (
-          <li><img src={weather.image}/>{weather.weather} - {weather.total}</li>
+          <ListGroupItem><img src={weather.image}/>{weather.weather} - {weather.total}</ListGroupItem>
         );
     });
 
@@ -151,6 +151,7 @@ class Dashboard extends Component {
               <h4>Other Countries</h4>
               <ListGroup>
                 {listOrigin}
+                <button>See Raw Data</button>
               </ListGroup>
             </Col>
             <Col xs={12} md={4} xsOffset={1} className="border">
@@ -175,9 +176,9 @@ class Dashboard extends Component {
             </Col>
             <Col xs={12} md={3} mdOffset={1} className="border">
               <h4 className="subtitles">Weather</h4>
-              <ul>
+              <ListGroup>
                 {listWeather}
-              </ul>
+              </ListGroup>
             </Col>
           </Row>
         </Grid>

@@ -25,6 +25,7 @@
 .subtitles{
   text-decoration: underline;
   text-align: center;
+  color: 	#004c00;
 }
 
 .pieName{
@@ -39,10 +40,4 @@
 .listLeft{
   margin: 10px;
   padding: 0;
-}
-
-ol{
-  width: 25%;
-  margin-left: auto;
-  margin-right: auto;
 }
