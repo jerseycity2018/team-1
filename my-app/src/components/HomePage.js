@@ -82,8 +82,8 @@ class HomePage extends Component {
             {this.state.icon && <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} rounded/>} 
             {this.state.temperature && <span style={{fontFamily:'Helvetica'}}>Central Park: {this.toFarenheit(this.state.temperature)} degrees</span>}
             </span>
-            <Button bsSize="large" style={{color:'#79bf43', float:'right'}}><div style={{fontWeight:'bold'}}>Help Us Help You</div>
-            <Link to="/survey"></Link>
+            <Button bsSize="large" style={{color:'#79bf43', float:'right', fontWeight:'bold'}}>
+            <Link to="/survey">Help Us Help You</Link>
             </Button>
             </span> 
             </div>

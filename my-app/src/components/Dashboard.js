@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import SimpleMap from './Map';
 import { Button, ListGroup, FormGroup, Grid, Row, Col, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
 import MiniPie from './MiniPie';
 import { data, data1, data2 } from './data';
 import './../styles/dashboard.css';
+
 
 class Dashboard extends Component {
   constructor(){
@@ -98,7 +100,8 @@ class Dashboard extends Component {
               </ul>
             </Col>
           </Row>
-        </Grid>
+        </Grid>  
+        <SimpleMap />
       </div>
     );
   }
