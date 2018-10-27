@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button, ButtonToolbar, FormGroup, FormControl, ToggleButton, ToggleButtonGroup, Jumbotron, MenuItem,
-  SplitButton, Row, Col} from "react-bootstrap";
+  SplitButton, Row, Col, ControlLabel} from "react-bootstrap";
 
 class Survey extends Component {
   constructor(props, context) {
@@ -23,6 +23,7 @@ class Survey extends Component {
     age: '',
     gender: '',
     ethnicity: '',
+    comments: '',
     renderTitle: true,
     renderStates: true,
     renderZipcode: false,
@@ -35,7 +36,8 @@ class Survey extends Component {
     renderTravel: false,
     renderAge: false,
     renderGender: false,
-    renderEthnicity:false,
+    renderEthnicity: false,
+    renderComments: false,
     renderEnd: false
   };
 }
@@ -73,7 +75,8 @@ handleCase = (param) => {
         case 4:
         return this.setState({
             renderCountry: false,
-            renderGroup: true
+            renderGroup: true,
+            value:''
         })
         case 5:
         return this.setState({
@@ -122,6 +125,12 @@ handleCase = (param) => {
         case 13:
         return this.setState({
             renderEthnicity: false,
+            renderComments: true
+
+        })
+        case 14:
+        return this.setState({
+            renderComments:false,
             renderEnd: true,
             renderTitle: false
         })
@@ -174,7 +183,7 @@ handleChange(e) {
                     >
                     <FormControl
                     type="text"
-                    zipcode={this.state.zipcode}
+                    value={this.state.value}
                     placeholder="Enter Zipcode"
                     onChange={this.handleChange}
                     />
@@ -237,13 +246,13 @@ handleChange(e) {
           <form>
             <FormControl
               type="text"
-              value={this.state.value}
+              people={this.state.people}
               placeholder="Enter number of people"
               onChange={this.handleChange}
             />
             <FormControl.Feedback />
         </form>
-            <button onClick={()=>this.handleClick(6, 'people', this.state.value)}>Enter</button>
+            <button onClick={()=>this.handleClick(6, 'people', this.state.people)}>Enter</button>
         </div>
         </Jumbotron>
         </div>
@@ -336,76 +345,95 @@ handleChange(e) {
         ):<div></div>}
 
         {this.state.renderTravel ?(
-        <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> How did you get to Central Park? </h2><div>
-            <FormGroup style={{marginLeft:"25%" , marginright:"25%"}}>
-            <ButtonToolbar>
-                <ToggleButtonGroup 
-                defaultValue={[1, 6]}                
-                type="checkbox"
-                value={this.state.value}
-                onChange={this.handleChange}>
-                <ToggleButton value={'Subway'}>Subway</ToggleButton>
-                <ToggleButton value={'Long Island Railroad (LIRR)'}>Long Island Railroad (LIRR)</ToggleButton>
-                <ToggleButton value={'Walking'}>Walking</ToggleButton>
-                <ToggleButton value={'Car'}>Car</ToggleButton>
-                <ToggleButton value={'Biking'}>Biking</ToggleButton>
-                <ToggleButton value={'Other'}>Other</ToggleButton>
-                </ToggleButtonGroup>
-            </ButtonToolbar>
-            </FormGroup>
+            <div>
+                <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+                <h2 style={{color:"white"}}> How did you get to Central Park? </h2><div>
+                    <FormGroup style={{marginLeft:"25%" , marginright:"25%"}}>
+                    <ButtonToolbar>
+                        <ToggleButtonGroup 
+                        defaultValue={[1, 6]}                
+                        type="checkbox"
+                        value={this.state.value}
+                        onChange={this.handleChange}>
+                        <ToggleButton value={'Subway'}>Subway</ToggleButton>
+                        <ToggleButton value={'Long Island Railroad (LIRR)'}>Long Island Railroad (LIRR)</ToggleButton>
+                        <ToggleButton value={'Walking'}>Walking</ToggleButton>
+                        <ToggleButton value={'Car'}>Car</ToggleButton>
+                        <ToggleButton value={'Biking'}>Biking</ToggleButton>
+                        <ToggleButton value={'Other'}>Other</ToggleButton>
+                        </ToggleButtonGroup>
+                    </ButtonToolbar>
+                    </FormGroup>
+                    </div>
+                    <button onClick={()=>this.handleClick(10, 'travel', this.state.value)}>Enter</button>    
+                </Jumbotron>
             </div>
-            <button onClick={()=>this.handleClick(10, 'travel', this.state.value)}>Enter</button>    
-        </Jumbotron>
-        </div>
         ):<div></div>}
 
         {this.state.renderAge ?(
-        <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> Age </h2>
-          <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
-            <Button onClick={()=>this.handleClick(11, 'age', '0-15')}  bsSize="large" block>0-15</Button>
-            <Button onClick={()=>this.handleClick(11, 'age', '15-24')}  bsSize="large" block>15-24</Button>
-            <Button onClick={()=>this.handleClick(11, 'age', '25-34')}  bsSize="large" block>25-34</Button>
-            <Button onClick={()=>this.handleClick(11, 'age', '35-44')}  bsSize="large" block>35-44</Button>
-            <Button onClick={()=>this.handleClick(11, 'age', '45-55')}  bsSize="large" block>45-55</Button>
-            <Button onClick={()=>this.handleClick(11, 'age', '55+')} bsSize="large" block>55+</Button>
-          </div>
-        </Jumbotron>
-        </div>
+            <div>
+                <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+                    <h2 style={{color:"white"}}> Age </h2>
+                    <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
+                        <Button onClick={()=>this.handleClick(11, 'age', '0-15')}  bsSize="large" block>0-15</Button>
+                        <Button onClick={()=>this.handleClick(11, 'age', '15-24')}  bsSize="large" block>15-24</Button>
+                        <Button onClick={()=>this.handleClick(11, 'age', '25-34')}  bsSize="large" block>25-34</Button>
+                        <Button onClick={()=>this.handleClick(11, 'age', '35-44')}  bsSize="large" block>35-44</Button>
+                        <Button onClick={()=>this.handleClick(11, 'age', '45-55')}  bsSize="large" block>45-55</Button>
+                        <Button onClick={()=>this.handleClick(11, 'age', '55+')} bsSize="large" block>55+</Button>
+                    </div>
+                </Jumbotron>
+            </div>
         ):<div></div>}
 
         {this.state.renderGender ?(
-        <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> Gender </h2>
-          <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
-            <Button onClick={()=>this.handleClick(12, 'gender', 'Male')}  bsSize="large" block>Male</Button>
-            <Button onClick={()=>this.handleClick(12, 'gender', 'Female')} bsSize="large" block>Female</Button>
-            <Button onClick={()=>this.handleClick(12, 'gender', 'Other')} bsSize="large" block>Other</Button>
-            <Button onClick={()=>this.handleClick(12, 'gender', 'Prefer To Not Disclose')} bsSize="large" block>Prefer To Not Disclose</Button>
-          </div>
-        </Jumbotron>
-        </div>
+            <div>
+                <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+                    <h2 style={{color:"white"}}> Gender </h2>
+                    <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
+                        <Button onClick={()=>this.handleClick(12, 'gender', 'Male')}  bsSize="large" block>Male</Button>
+                        <Button onClick={()=>this.handleClick(12, 'gender', 'Female')} bsSize="large" block>Female</Button>
+                        <Button onClick={()=>this.handleClick(12, 'gender', 'Other')} bsSize="large" block>Other</Button>
+                        <Button onClick={()=>this.handleClick(12, 'gender', 'Prefer To Not Disclose')} bsSize="large" block>Prefer To Not Disclose</Button>
+                    </div>
+                </Jumbotron>
+            </div>
         ):<div></div>}
         
         {this.state.renderEthnicity ?(
-        <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> Ethnicity </h2>
-          <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'White')} bsSize="large" block>White</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Hispanic or Latino')} bsSize="large" block>Hispanic or Latino</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Black or African American')} bsSize="large" block>Black or African American</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Native American or American Indian')} bsSize="large" block>Native American or American Indian</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Asian/Pacific Islander')} bsSize="large" block>Asian/Pacific Islander</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Other')} bsSize="large" block>Other</Button>
-          <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Prefer To Not Disclose')} bsSize="large" block>Prefer To Not Disclose</Button>
-          </div>
-        </Jumbotron>
-        </div>
+            <div>
+                <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+                    <h2 style={{color:"white"}}> Ethnicity </h2>
+                    <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'White')} bsSize="large" block>White</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Hispanic or Latino')} bsSize="large" block>Hispanic or Latino</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Black or African American')} bsSize="large" block>Black or African American</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Native American or American Indian')} bsSize="large" block>Native American or American Indian</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Asian/Pacific Islander')} bsSize="large" block>Asian/Pacific Islander</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Other')} bsSize="large" block>Other</Button>
+                        <Button onClick={()=>this.handleClick(13, 'ethnicity', 'Prefer To Not Disclose')} bsSize="large" block>Prefer To Not Disclose</Button>
+                    </div>
+                </Jumbotron>
+            </div>
+        ):<div></div>}
+
+        {this.state.renderComments ?(
+            <div>
+                <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+                    <h2 style={{color:"white"}}> Further Comments </h2>
+                    <div style={{width:"50%", marginLeft:"25%" , marginright:"25%"}}>
+                        <br></br>
+                        <FormGroup controlId="formControlsTextarea">
+                            <ControlLabel></ControlLabel>
+                            <FormControl 
+                            componentClass="textarea"
+                            placeholder="Comments"
+                            inputRef={(ref) => {this.input = ref}}></FormControl>
+                        </FormGroup>
+                        <Button onClick={()=>this.handleClick(14, 'comments', this.input.value)} bsSize="large" block>Submit</Button>
+                    </div>
+                </Jumbotron>
+            </div>
         ):<div></div>}
 
         {this.state.renderEnd ?(
