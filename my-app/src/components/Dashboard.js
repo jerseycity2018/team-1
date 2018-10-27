@@ -5,8 +5,11 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-
+      <div>
+        <header>
             Central Park Statistics
+        </header>
+        </div>
 
       </div>
     );
