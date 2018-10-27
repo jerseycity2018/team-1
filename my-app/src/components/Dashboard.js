@@ -12,19 +12,19 @@ class Dashboard extends Component {
         </header>
         </div>
         <Grid>
-          <Row className="show-grid">
+          <Row className="show-grid" className="border">
             <Col md={12}>
               <code>{'<Col md={12} />'}</code>
             </Col>
           </Row>
           <Row>
-            <Col xs={12} md={3}>
+            <Col xs={12} md={3} className="border">
               <code>{'<Col xs={12} md={4} />'}</code>
             </Col>
-            <Col xs={12} md={3} xsOffset={1}>
+            <Col xs={12} md={3} mdOffset={1} className="border">
               <code>{'<Col xs={12} md={4} />'}</code>
             </Col>
-            <Col xs={12} md={3} xsOffset={1}>
+            <Col xs={12} md={3} mdOffset={1} className="border">
               <code>{'<Col xs={12} md={4} />'}</code>
             </Col>
           </Row>
