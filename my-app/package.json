@@ -6,7 +6,8 @@
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.0.5"
+    "react-scripts": "2.0.5",
+    "survey-react": "^1.0.52"
   },
   "scripts": {
     "start": "react-scripts start",
