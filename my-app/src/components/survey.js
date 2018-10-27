@@ -71,9 +71,9 @@ handleChange(e) {
             <h1> Survey </h1>
         {this.state.renderStates ?(
             <div>
-            <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+            <Jumbotron style={{backgroundColor:"#79bf43"}}>
                 <h2 style={{color:"white"}}> Are you from the United States? </h2>
-                <div style={{width:"50%", marginLeft:"300px"}}>
+                  <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
                     <Button onClick={()=>this.handleClick(1)} value="yes" bsSize="large" block>Yes</Button>
                     <Button onClick={()=>this.handleClick(2)} value="no" bsSize="large" block>No</Button>
                 </div>
@@ -83,9 +83,9 @@ handleChange(e) {
 
         {this.state.renderZipcode ?(
         <div>
-            <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+            <Jumbotron style={{backgroundColor:"#79bf43"}}>
                 <h2 style={{color:"white"}}> What is your Zip Code? </h2>
-                <div style={{width:"50%", marginLeft:"300px"}}>
+                  <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
                 <form>
                     <FormGroup
                     controlId="formBasicText"
@@ -108,7 +108,7 @@ handleChange(e) {
 
         {this.state.renderCountry ?(
         <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> What country are you from? </h2>
           <SplitButton title="Choose a Country" pullRight id="split-button-pull-right" bsSize="large">
           <MenuItem eventKey="Afghanistan">Afghanistan</MenuItem>
@@ -139,9 +139,9 @@ handleChange(e) {
 
         {this.state.renderGroup ?(
         <div>
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> Are you alone or with a group? </h2>
-            <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
               <Button bsSize="large" block>Alone</Button>
               <Button bsSize="large" block>Group</Button>
             </div>
@@ -150,9 +150,9 @@ handleChange(e) {
         ):<div></div>}
 
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> How many people? (Including you) </h2>
-          <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
           <form>
             <FormControl
               type="text"
@@ -165,44 +165,44 @@ handleChange(e) {
         </div>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> What places did you visit? </h2>
-          <FormGroup style={{marginLeft:"300px", marginRight:"300px"}}>
+          <FormGroup style={{marginLeft:"300px", marginRight:"25%", marginLeft:"25%"}}>
           <Row className="show-grid">
               <Col md={6} mdPush={6}>
-              <Checkbox>Cherry Hill</Checkbox>
-              <Checkbox>Strawberry Fields (Imagine Mosaic)</Checkbox>
-              <Checkbox>Bow Bridge</Checkbox>
-              <Checkbox>Shakespeare Garden</Checkbox>
-              <Checkbox>The Pool</Checkbox>
-              <Checkbox>The Loch</Checkbox>
-              <Checkbox>The Ravine</Checkbox>
-              <Checkbox>The Mall (Literary Walk)</Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Cherry Hill</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Strawberry Fields (Imagine Mosaic)</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Bow Bridge</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Shakespeare Garden</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>The Pool</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>The Loch</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>The Ravine</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>The Mall (Literary Walk)</h4></Checkbox>
               </Col>
               <Col md={6} mdPull={6}>
-              <Checkbox>Balto</Checkbox>
-              <Checkbox>Bethesda Terrace (Bethesda Fountain)</Checkbox>
-              <Checkbox>Alice in Wonderland</Checkbox>
-              <Checkbox>Conservatory Water</Checkbox>
-              <Checkbox>Obelisk (Cleopatra's Needle)</Checkbox>
-              <Checkbox>Reservoir</Checkbox>
-              <Checkbox>Conservatory Garden</Checkbox>
-              <Checkbox>The Harlem Meer</Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Balto</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Bethesda Terrace (Bethesda Fountain)</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Alice in Wonderland</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Conservatory Water</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Obelisk (Cleopatra's Needle)</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Reservoir</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Conservatory Garden</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>The Harlem Meer</h4></Checkbox>
               </Col>
             </Row>
             </FormGroup>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> What activities did you do? </h2>
-          <FormGroup style={{marginLeft:"400px", marginRight:"400px"}}>
+          <FormGroup style={{marginLeft:"300px", marginRight:"35%", marginLeft:"35%"}}>
           <Row className="show-grid">
               <Col md={6} mdPush={6}>
-              <Checkbox> <h4 style={{display:"inline-block"}}>Bicycle Rentals</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Boating</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Ice Skating</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Swimming</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Zoo</h4></Checkbox>
+              <Checkbox> <h4 style={{display:"inline-block"}}>Other</h4></Checkbox>
               </Col>
               <Col md={6} mdPull={6}>
               <Checkbox> <h4 style={{display:"inline-block"}}>Walk dog(s)</h4></Checkbox>
@@ -216,9 +216,9 @@ handleChange(e) {
             </FormGroup>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> How long did you stay for/plan to stay for? </h2>
-          <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
             <Button bsSize="large" block>1 hour</Button>
             <Button bsSize="large" block>2 hours</Button>
             <Button bsSize="large" block>3 hours</Button>
@@ -227,21 +227,22 @@ handleChange(e) {
           </div>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> How did you get to Central Park? </h2>
-          <FormGroup style={{marginLeft:"300px", marginRight:"300px"}}>
+          <FormGroup style={{marginLeft:"300px", marginRight:"25%", marginLeft:"25%"}}>
               <Checkbox> <h4 style={{display:"inline-block"}}>Subway</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Long Island Railroad (LIRR)</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Walking</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Car</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Biking</h4></Checkbox>
               <Checkbox> <h4 style={{display:"inline-block"}}>Other</h4></Checkbox>
+
             </FormGroup>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> Age </h2>
-          <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
             <Button bsSize="large" block>0-15</Button>
             <Button bsSize="large" block>15-24</Button>
             <Button bsSize="large" block>25-34</Button>
@@ -251,9 +252,9 @@ handleChange(e) {
           </div>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> Gender </h2>
-          <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
             <Button bsSize="large" block>Male</Button>
             <Button bsSize="large" block>Female</Button>
             <Button bsSize="large" block>Other</Button>
@@ -261,9 +262,9 @@ handleChange(e) {
           </div>
         </Jumbotron>
 
-        <Jumbotron style={{backgroundColor:"#69ca6b"}}>
+        <Jumbotron style={{backgroundColor:"#79bf43"}}>
           <h2 style={{color:"white"}}> Ethnicity </h2>
-          <div style={{width:"50%", marginLeft:"300px"}}>
+            <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
           <Button bsSize="large" block>White</Button>
           <Button bsSize="large" block>Hispanic or Latino</Button>
           <Button bsSize="large" block>Black or African American</Button>
