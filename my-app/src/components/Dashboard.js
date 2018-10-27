@@ -13,6 +13,10 @@ import Sports from './Sports.png';
 import Zoo from './Zoo.png';
 import Other from './Other.png';
 import Walk from './Walk.png';
+import Sunny from './Sunny.png';
+import Rain from './Rain.png';
+import Snow from './Snow.png';
+import Clouds from './Clouds.png';
 import './../styles/dashboard.css';
 import axios from 'axios';
 
@@ -28,7 +32,11 @@ actPics['Zoo'] = Zoo;
 actPics['Other'] = Other;
 actPics['Walk'] = Walk;
 
-
+let weatherPics = {};
+weatherPics['Sunny'] = Sunny;
+weatherPics['Clouds'] = Clouds;
+weatherPics['Rain'] = Rain;
+weatherPics['Snow'] = Snow;
 
 class Dashboard extends Component {
   constructor(){
@@ -46,7 +54,6 @@ class Dashboard extends Component {
       weather: []
     };
   }
-
 
   componentDidMount() {
     let allStats = [];
@@ -74,6 +81,15 @@ class Dashboard extends Component {
     allStats.push(axios.get('/states').then(response => {
       this.setState({states: response.data.data});
     }));
+    allStats.push(axios.get('/weather').then(response => {
+      this.setState({weather: response.data.data});
+    }));
+    allStats.push(axios.get('/hour').then(response => {
+      this.setState({time: response.data.data});
+    }));
+    allStats.push(axios.get('/places').then(response => {
+      this.setState({place: response.data.data});
+    }));
     Promise.all(allStats).then(() => {
       return true;
     })
@@ -88,13 +104,19 @@ class Dashboard extends Component {
 
     let listPlaces = this.state.place.map((place) => {
         return (
-          <li>{place.place} - {place.total}</li>
+          <li>{place.place} - {place.total} people</li>
+        );
+    });
+
+    let listTimes = this.state.time.map((hour) => {
+        return (
+          <li>Hour {hour.hour} - {hour.total} people</li>
         );
     });
 
     let listWeather = this.state.weather.map((weather) => {
         return (
-          <ListGroupItem><img src={weather.image}/>{weather.weather} - {weather.total}</ListGroupItem>
+          <ListGroupItem><img className="adjustSize" src={weatherPics[weather.weather]}/><b>{weather.weather}</b> : {weather.total} people</ListGroupItem>
         );
     });
 
@@ -104,7 +126,7 @@ class Dashboard extends Component {
       return 0;
     }).slice(0,3).map((origin) => {
         return (
-          <li><b>{origin.country}</b> : {origin.total}</li>
+          <li><b>{origin.country}</b> : {origin.total} people</li>
         );
     });
 
@@ -114,7 +136,17 @@ class Dashboard extends Component {
       return 0;
     }).slice(0,3).map((state) => {
         return (
-          <li><b>{state.state}</b> : {state.total}</li>
+          <li><b>{state.state}</b> : {state.total} people</li>
+        );
+    });
+
+    let listGroup = this.state.group.sort((a,b) => {
+      if (a.total < b.total) return 1;
+      if (a.total > b.total) return -1;
+      return 0;
+    }).map((group) => {
+        return (
+          <li><b>{group.group} person(s)</b> : {group.total} groups</li>
         );
     });
 
@@ -158,9 +190,15 @@ class Dashboard extends Component {
             </Col>
             <Col xs={12} md={4} xsOffset={1} className="border">
               <h4 className="subtitles">Group Size</h4>
+              <ListGroup>
+                {listGroup}
+              </ListGroup>
             </Col>
             <Col xs={12} md={3} mdOffset={1} className="border">
               <h4 className="subtitles">Time</h4>
+              <ListGroup>
+                {listTimes}
+              </ListGroup>
             </Col>
           </Row>
           <Row className="top-buffer bottom-buffer">
@@ -183,7 +221,7 @@ class Dashboard extends Component {
               </ListGroup>
             </Col>
           </Row>
-        </Grid>  
+        </Grid>
         <SimpleMap />
       </div>
     );

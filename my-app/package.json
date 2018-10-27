@@ -11,7 +11,6 @@
     "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.0",
     "react-minimal-pie-chart": "^3.3.0",
-    "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.5",
     "react-simple-pie-chart": "^0.5.0",
     "survey-react": "^1.0.52"

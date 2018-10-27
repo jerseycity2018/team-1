@@ -110,9 +110,9 @@ export default class MiniPie extends React.Component {
         return "translate(" + label.centroid(d) + ")";
       })
       .attr("dy", "0.35em")
-      .attr("fill", "white")
+      .attr("fill", "black")
 
-      .text(d => `${(d.value/sum*100).toFixed(2)}% (${d.value})`)
+      .text(d => `${(d.value/sum*100).toFixed(2)}%`)
       .attr("text-anchor", "middle");
 
     // https://stackoverflow.com/questions/9241315/trimming-text-to-a-given-pixel-width-in-svg/24120935
