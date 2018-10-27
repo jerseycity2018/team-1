@@ -14,6 +14,7 @@ class Survey extends Component {
     zipcode: '',
     country: '',
     group: '',
+    people: '',
     renderStates: true,
     renderZipcode: false,
     renderCountry: false,
@@ -21,7 +22,16 @@ class Survey extends Component {
   };
 }
 
-handleClick = (param) =>{
+getSelected = (e,state) =>{
+    this.setState({state: e});
+}
+
+handleClick = (Case, state, e) =>{
+    this.handleCase(Case);
+    this.getSelected(e, state);
+}
+
+handleCase = (param) => {
     switch(param){
 	    case 1:
         return this.setState({
@@ -42,23 +52,18 @@ handleClick = (param) =>{
     }
 }
 
-handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      this.setState({zipcode: false});
-      this.setState({group: true});
-    }
-}
-
 getValidationState() {
   const length = this.state.value.length;
-  if (length == 10) return 'success';
-  else if (length != 5) return 'warning';
+  if (length > 10) return 'success';
+  else if (length > 5) return 'warning';
+  else if (length > 0) return 'error';
   return null;
 }
 
 handleChange(e) {
   this.setState({ value: e.target.value });
 }
+
 
   render() {
     return (
@@ -143,6 +148,7 @@ handleChange(e) {
         </Jumbotron>
         </div>
         ):<div></div>}
+
 
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
           <h2 style={{color:"white"}}> How many people? (Including you) </h2>
