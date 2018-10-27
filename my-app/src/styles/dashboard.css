@@ -21,6 +21,11 @@
   text-decoration: underline;
 }
 
+.pieName{
+  text-align: center;
+}
 ol{
   width: 25%;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import SimpleMap from './Map';
 import { Button, ListGroup, FormGroup, Grid, Row, Col, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
 import MiniPie from './MiniPie';
 import { data, data1, data2 } from './data';
 import './../styles/dashboard.css';
+
 
 class Dashboard extends Component {
   constructor(){
@@ -46,23 +48,23 @@ class Dashboard extends Component {
       <div>
       <div>
         <header className="headerstyle">
-            Central Park Statistics
+            Central Park Visitor Statistics
         </header>
         </div>
         <Grid className="top-buffer">
           <Row className="show-grid" className="border ">
-              <h4 className="subtitles">Demographics</h4>
+              <h2 className="subtitles">Demographics</h2>
               <Col xs={12} md={5}>
-                <h4>ETHNICITY</h4>
+                <h3 className="pieName">ETHNICITY</h3>
                 <MiniPie width={370} height={270} data={data}/>
               </Col>
               <Col xs={12} md={5} xsOffset={2}>
-                <h4>AGE</h4>
+                <h3 className="pieName">AGE</h3>
                 <MiniPie width={370} height={270} data={data1}/>
               </Col>
               <Row className="show-grid">
                 <Col md={12}>
-                  <h4>GENDER</h4>
+                  <h3 className="pieName">GENDER</h3>
                   <MiniPie width={370} height={270} data={data2}/>
                 </Col>
               </Row>
@@ -98,7 +100,8 @@ class Dashboard extends Component {
               </ul>
             </Col>
           </Row>
-        </Grid>
+        </Grid>  
+        <SimpleMap />
       </div>
     );
   }

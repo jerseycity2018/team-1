@@ -6,6 +6,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import Dashboard from  './components/Dashboard';
 import Survey from './components/survey';
+import Map from './components/Map';
 
 class App extends Component {
   render() {
@@ -14,6 +15,8 @@ class App extends Component {
       <div>
         <Route name="app" exact path="/" component={HomePage} />
         <Route exact path="/survey" component={Survey} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/map" component={Map} />
       </div>
       </Router>
     );
