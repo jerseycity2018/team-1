@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "DB_USERNAME",
-    "password": "DB_PASSWORD",
-    "database": "APP_development",
+    "username": "cpc_user",
+    "password": "cpc_user",
+    "database": "cpc_data",
     "host": "127.0.0.1",
     "dialect": "postgresql"
   },
