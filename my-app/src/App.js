@@ -10,7 +10,7 @@ import Map from './components/Map';
 
 class App extends Component {
   render() {
-    return (
+    let old = (
       <Router>
       <div>
         <Route name="app" exact path="/" component={HomePage} />
@@ -20,6 +20,7 @@ class App extends Component {
       </div>
       </Router>
     );
+    return (<Dashboard />);
   }
 }
 

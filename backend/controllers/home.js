@@ -93,17 +93,17 @@ router.post('/survey', (req, res) => {
   {
     zipcode: "10010",
     city: "New York",
-    state: "NY",
-    country: "US",
+    state: "CA",
+    country: "UK",
     aloneOrGroup: "Alone",
     group: 1,
-    places: ["Bethesda Fountain"],
+    places: ["Bethesda Fountain", "Great Mall"],
     duration: "30 Minutes",
     transportation: "Walked",
     age: 21,
     ethnicity: "Asian",
     gender: "Male",
-    activity: "Photography",
+    activity: "Zoo",
     weather: "Sunny",
     hour: 11
   })
@@ -166,10 +166,10 @@ router.get('/ethnicity', (req, res) => {
   });
 });
 
-router.get('/places', (req, res) => {
+router.get('/hour', (req, res) => {
   models.Surveys.findAll({
-    group: ['places'],
-    attributes: ['places',[Sequelize.fn('COUNT', Sequelize.col('places')), 'total']]
+    group: ['hour'],
+    attributes: ['hour',[Sequelize.fn('COUNT', Sequelize.col('hour')), 'total']]
   }).then(data => {
     res.json({
       data: data
@@ -199,10 +199,10 @@ router.get('/group', (req, res) => {
   });
 });
 
-router.get('/time', (req, res) => {
+router.get('/places', (req, res) => {
   models.Surveys.findAll({
-    group: ['hour'],
-    attributes: ['hour',[Sequelize.fn('COUNT', Sequelize.col('hour')), 'total']]
+    group: ['place'],
+    attributes: [[Sequelize.fn('UNNEST', Sequelize.col('places')), 'place'], [Sequelize.fn('COUNT', 'place'), 'total']]
   }).then(data => {
     res.json({
       data: data
@@ -236,6 +236,18 @@ router.get('/states', (req, res) => {
   models.Surveys.findAll({
     group: ['state'],
     attributes: ['state',[Sequelize.fn('COUNT', Sequelize.col('state')), 'total']]
+  }).then(data => {
+    res.json({
+      data: data
+    });
+  });
+});
+
+
+router.get('/weather', (req, res) => {
+  models.Surveys.findAll({
+    group: ['weather'],
+    attributes: ['weather',[Sequelize.fn('COUNT', Sequelize.col('weather')), 'total']]
   }).then(data => {
     res.json({
       data: data
