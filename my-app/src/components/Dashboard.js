@@ -5,12 +5,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <header>
-          <p>
-            Edit
-          </p>
-            <Button>Default</Button>
-        </header>
+
+            Central Park Statistics
+
       </div>
     );
   }
