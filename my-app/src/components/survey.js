@@ -181,16 +181,14 @@ handleChange(e) {
                     controlId="formBasicText"
                     validationState={this.getValidationState()}
                     >
-                    <FormControl
-                    type="text"
-                    value={this.state.value}
+                    <FormControl 
+                    componentClass="input"
                     placeholder="Enter Zipcode"
-                    onChange={this.handleChange}
-                    />
-                    <FormControl.Feedback />
+                    inputRef={(ref) => {this.input = ref}}>
+                    </FormControl>
                     </FormGroup>
                 </form>
-                <button onClick={()=>this.handleClick(3, 'zipcode', this.state.value)}>Enter</button>
+                <button onClick={()=>this.handleClick(3, 'zipcode', this.input.value)}>Enter</button>
                 </div>
             </Jumbotron>
         </div>
@@ -241,18 +239,16 @@ handleChange(e) {
         {this.state.renderPeople ?(
         <div>
         <Jumbotron style={{backgroundColor:"#69ca6b"}}>
-          <h2 style={{color:"white"}}> How many people? (Including you) </h2>
-          <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
-          <form>
-            <FormControl
-              type="text"
-              people={this.state.people}
-              placeholder="Enter number of people"
-              onChange={this.handleChange}
-            />
-            <FormControl.Feedback />
+           <h2 style={{color:"white"}}> How many people? (Including you) </h2>
+           <div style={{width:"50%", marginLeft:"25%", marginRight:"25%"}}>
+           <form>
+           <FormControl 
+                componentClass="input"
+                placeholder="Enter Group Size"
+                inputRef={(ref) => {this.input = ref}}>
+            </FormControl>
         </form>
-            <button onClick={()=>this.handleClick(6, 'people', this.state.people)}>Enter</button>
+            <button onClick={()=>this.handleClick(6, 'people', this.input.value)}>Enter</button>
         </div>
         </Jumbotron>
         </div>
@@ -428,7 +424,8 @@ handleChange(e) {
                             <FormControl 
                             componentClass="textarea"
                             placeholder="Comments"
-                            inputRef={(ref) => {this.input = ref}}></FormControl>
+                            inputRef={(ref) => {this.input = ref}}>
+                            </FormControl>
                         </FormGroup>
                         <Button onClick={()=>this.handleClick(14, 'comments', this.input.value)} bsSize="large" block>Submit</Button>
                     </div>
