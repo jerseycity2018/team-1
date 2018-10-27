@@ -69,6 +69,104 @@ handleChange(e) {
             <MenuItem eventKey="4">Separated link</MenuItem>
             </SplitButton>
         </Jumbotron>
+
+        <Jumbotron>
+          <h2> Are you alone or with a group? </h2>
+            <ButtonToolbar>
+              <Button bsSize="large" block>
+                Alone
+              </Button>
+              <Button bsSize="large" block>Group</Button>
+            </ButtonToolbar>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> How many people? (Including you) </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> Where did you go? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> What activities did you do? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> How long did you stay for/plan to stay for? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> How did you get to Central Park? </h2>
+          <ButtonToolbar>
+            <Button bsSize="large" block>
+              Yes
+            </Button>
+            <Button bsSize="large" block>No</Button>
+          </ButtonToolbar>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> Age? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> Gender? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
+        <Jumbotron>
+          <h2> Ethnicity? </h2>
+          <SplitButton title="Dropdown right" pullRight id="split-button-pull-right" bsSize="large">
+          <MenuItem eventKey="1">Action</MenuItem>
+          <MenuItem eventKey="2">Another action</MenuItem>
+          <MenuItem eventKey="3">Something else here</MenuItem>
+          <MenuItem divider />
+          <MenuItem eventKey="4">Separated link</MenuItem>
+          </SplitButton>
+        </Jumbotron>
+
       </div>
     )
   }
