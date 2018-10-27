@@ -1,14 +1,24 @@
 {
   "data": [
     {
-      "text": "ASIANS",
+      "text": "Asians",
       "value": 50,
       "color": "yellow"
     },
     {
       "text": "Black",
       "value": 32,
-      "color": "black"
+      "color": "silver"
+    },
+    {
+      "text": "White",
+      "value": 70,
+      "color": "teal"
+    },
+    {
+      "text": "Hispanic",
+      "value": 69,
+      "color": "brown"
     },
     {
       "text": "Other",
@@ -18,19 +28,29 @@
   ],
   "data1": [
     {
-      "text": "1-15",
-      "value": 50,
+      "text": "51-69",
+      "value": 45,
       "color": "orange"
     },
     {
-      "text": "16-40",
-      "value": 78,
+      "text": "70+",
+      "value": 30,
       "color": "pink"
     },
     {
-      "text": "40+",
-      "value": 12,
+      "text": "1-15",
+      "value": 40,
       "color": "blue"
+    },
+    {
+      "text": "16-29",
+      "value": 70,
+      "color": "indigo"
+    },
+    {
+      "text": "30-50",
+      "value": 50,
+      "color": "gold"
     }
   ],
   "data2": [

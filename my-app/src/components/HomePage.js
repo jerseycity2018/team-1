@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, FormGroup, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem } from "react-bootstrap";
-
+import { Button, FormGroup, FormControl, ControlLabel, Jumbotron, Navbar, Nav, NavItem, Row } from "react-bootstrap";
 
 class HomePage extends Component {
     constructor(props) {
@@ -9,9 +8,11 @@ class HomePage extends Component {
 
         this.state = {
             temperature: undefined,
-            icon: undefined
+            icon: undefined,
+            main: undefined
         }
     }
+
 
         toFarenheit(kelvin) {
             console.log(kelvin);
@@ -27,43 +28,67 @@ class HomePage extends Component {
             const api_call = fetch(weatherURL).then(
                 response => response.json()).then(
                     data => {
-                    
-                    console.log(data.weather.icon)
-                    
+
                     this.setState({
                     temperature: data.main.temp,
                     icon: data.weather[0].icon,
+                    main: data.weather[0].main,
                     error: ""
                 })
             }
         );
+        }
 
+        checkWeather (condition) {
 
+            var pics = {
+                rain:"https://images.fineartamerica.com/images-medium-large/central-park-in-the-rain-greg-norrell.jpg",
+                snow:"https://cdn.traveltripper.io/site-assets/426_558_10572/media/2017-12-28-103700/Wintertime-In-Central-Park.jpg",
+                sun:"http://www.sherrynetherland.com/resources/media/user/1479089826-bethesda-terrace.jpg",
+                cloud:"https://c1.staticflickr.com/5/4055/4544739106_ce87be74d5_b.jpg"
+            }
+            console.log(condition);
+            console.log(pics);
 
-            //console.log(api_call);
-                      
+            if(condition === 'Rain'){
+                console.log(pics.rain);
+                return pics.rain;
+            }
+
+            if (condition === 'Clear') {
+                console.log(pics.snow);
+                return pics.snow;
+            }
+
+            if (condition === 'Clear') {
+                console.log(pics.sun);
+                return pics.sun;
+            }
         }
 
         componentDidMount () {
             this.getWeather();
+            this.checkWeather(this.main);
         }
+
     
   render() {
     return (
         <div>
-            <Jumbotron>
+            <Jumbotron style={{marginBottom: '0', paddingTop: '0', paddingBottom: '15px'}}>
             <div loadWeather={this.getWeather}>
-    {this.state.temperature && <p>Temperature: {this.toFarenheit(this.state.temperature)} degrees</p>}
-            {this.state.icon && <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`}/>}
-            </div>    
-                <div><h1>Welcome to Central Park!</h1></div>
-                <div><h3>Thank you for visiting</h3></div> 
-            </Jumbotron>
-            <ul>
-            <Button bsStyle="primary">Our Survey
-            <Link to="/survey"></Link>
+            <span className="text-center"><h1>Welcome to Central Park!</h1>
+            <span className="text-center"><h3>Thank you for visiting</h3>
+            {this.state.icon && <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`} rounded/>} 
+            {this.state.temperature && <span style={{fontFamily:'Helvetica'}}>Central Park: {this.toFarenheit(this.state.temperature)} degrees</span>}
+            </span>
+            <Button bsSize="large" style={{color:'#79bf43', float:'right', fontWeight:'bold'}}>
+            <Link to="/survey">Help Us Help You</Link>
             </Button>
-            </ul>
+            </span> 
+            </div>
+            </Jumbotron>
+            {this.state.main && <img  style={{width: '100%', maxHeight: '500px'}} src={this.checkWeather(this.state.main)}/>}
         </div>
     )
   }

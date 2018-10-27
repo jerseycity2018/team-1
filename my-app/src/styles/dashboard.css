@@ -11,16 +11,33 @@
   font-size: 50px;
   font-weight: bold;
   text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  text-align: center;
 }
 
 .top-buffer {
   margin-top:20px;
 }
 
-.subtitles{
-  text-decoration: underline;
+.bottom-buffer{
+  margin-bottom: 20px;
 }
 
-ol{
+.subtitles{
+  text-decoration: underline;
+  text-align: center;
+  color: 	#004c00;
+}
+
+.pieName{
+  text-align: center;
+}
+
+.adjustSize{
+  height: 25%;
   width: 25%;
+}
+
+.listLeft{
+  margin: 10px;
+  padding: 0;
 }
