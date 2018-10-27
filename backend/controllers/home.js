@@ -93,8 +93,8 @@ router.post('/survey', (req, res) => {
   {
     zipcode: "10010",
     city: "New York",
-    state: "NY",
-    country: "US",
+    state: "CA",
+    country: "UK",
     aloneOrGroup: "Alone",
     group: 1,
     places: ["Bethesda Fountain"],
@@ -103,7 +103,7 @@ router.post('/survey', (req, res) => {
     age: 21,
     ethnicity: "Asian",
     gender: "Male",
-    activity: "Boating",
+    activity: "Zoo",
     weather: "Sunny",
     hour: 11
   })

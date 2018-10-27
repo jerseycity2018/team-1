@@ -6,6 +6,12 @@ import Dog from './Dog-Walking.png';
 import Skate from './Ice-Skating.png';
 import Swim from './Swimming.png';
 import Boat from './Boating.png';
+import Bike from './Bike.png';
+import Picnic from './Picnic.png';
+import Sports from './Sports.png';
+import Zoo from './Zoo.png';
+import Other from './Other.png';
+import Walk from './Walk.png';
 import './../styles/dashboard.css';
 import axios from 'axios';
 
@@ -14,6 +20,13 @@ actPics['Dog-Walking'] = Dog;
 actPics['Ice-Skating'] = Skate;
 actPics['Swimming'] = Swim;
 actPics['Boating'] = Boat;
+actPics['Bike'] = Bike;
+actPics['Picnic'] = Picnic;
+actPics['Sports'] = Sports;
+actPics['Zoo'] = Zoo;
+actPics['Other'] = Other;
+actPics['Walk'] = Walk;
+
 
 class Dashboard extends Component {
   constructor(){
@@ -22,7 +35,8 @@ class Dashboard extends Component {
       ethnicity: [],
       age: [],
       gender: [],
-      location: [],
+      origin: [],
+      states: [],
       activity: [],
       time: [],
       group: [],
@@ -52,11 +66,16 @@ class Dashboard extends Component {
     allStats.push(axios.get('/group').then(response => {
       this.setState({group: response.data.data});
     }));
+    allStats.push(axios.get('/origin').then(response => {
+      this.setState({origin: response.data.data});
+    }));
+    allStats.push(axios.get('/states').then(response => {
+      this.setState({states: response.data.data});
+    }));
     Promise.all(allStats).then(() => {
       return true;
     })
   }
-
 
   render() {
     let listActivities = this.state.activity.map((activity) => {
@@ -77,9 +96,23 @@ class Dashboard extends Component {
         );
     });
 
-    let listGroup = this.state.weather.map((weather) => {
+    let listOrigin = this.state.origin.sort((a,b) => {
+      if (a.total < b.total) return 1;
+      if (a.total > b.total) return -1;
+      return 0;
+    }).slice(0,3).map((origin) => {
         return (
-          <li><img src={weather.image}/>{weather.weather} - {weather.total}</li>
+          <li><b>{origin.country}</b> : {origin.total}</li>
+        );
+    });
+
+    let listStates = this.state.states.sort((a,b) => {
+      if (a.total < b.total) return 1;
+      if (a.total > b.total) return -1;
+      return 0;
+    }).slice(0,3).map((state) => {
+        return (
+          <li><b>{state.state}</b> : {state.total}</li>
         );
     });
 
@@ -111,8 +144,14 @@ class Dashboard extends Component {
           <Row className="top-buffer">
             <Col xs={12} md={3} className="border">
               <h4 className="subtitles">Origins</h4>
-              <h3>Top Three States</h3>
-              <h3>
+              <h4>Top Three States</h4>
+              <ListGroup>
+                {listStates}
+              </ListGroup>
+              <h4>Other Countries</h4>
+              <ListGroup>
+                {listOrigin}
+              </ListGroup>
             </Col>
             <Col xs={12} md={4} xsOffset={1} className="border">
               <h4 className="subtitles">Group Size</h4>
