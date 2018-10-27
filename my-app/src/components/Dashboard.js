@@ -10,13 +10,14 @@ class Dashboard extends Component {
     return (
       <div>
       <div>
-        <header>
+        <header className="headerstyle">
             Central Park Statistics
         </header>
         </div>
-        <Grid>
+        <Grid className="top-buffer">
           <Row className="show-grid" className="border ">
             <Col md={12}>
+              <h4 className="subtitles">Demographics</h4>
               <div>
               <PieChart
                 data={[
@@ -34,15 +35,26 @@ class Dashboard extends Component {
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row className="top-buffer">
             <Col xs={12} md={3} className="border">
-              <code>{'<Col xs={12} md={4} />'}</code>
+              <h4 className="subtitles">Location</h4>
             </Col>
             <Col xs={12} md={4} xsOffset={1} className="border">
-              <code>{'<Col xs={12} md={4} />'}</code>
+              <h4 className="subtitles">Group Size</h4>
             </Col>
             <Col xs={12} md={3} mdOffset={1} className="border">
-              <code>{'<Col xs={12} md={4} />'}</code>
+              <h4 className="subtitles">Time</h4>
+            </Col>
+          </Row>
+          <Row className="top-buffer">
+            <Col xs={12} md={3} className="border">
+              <h4 className="subtitles">Activities</h4>
+            </Col>
+            <Col xs={12} md={4} xsOffset={1} className="border">
+              <h4 className="subtitles">Places Visited</h4>
+            </Col>
+            <Col xs={12} md={3} mdOffset={1} className="border">
+              <h4 className="subtitles">Weather</h4>
             </Col>
           </Row>
         </Grid>
