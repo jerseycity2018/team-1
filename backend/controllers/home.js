@@ -96,14 +96,14 @@ router.post('/survey', (req, res) => {
     state: "NY",
     country: "US",
     aloneOrGroup: "Alone",
-    people: 1,
+    group: 1,
     location: "Bethesda Fountain",
     duration: "30 Minutes",
     transportation: "Walked",
     age: 21,
     ethnicity: "Asian",
     gender: "Male",
-    activity: "Photography",
+    activity: "Boating",
     weather: "Sunny",
     hour: 11
   })
