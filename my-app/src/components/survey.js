@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Button, ButtonToolbar, FormGroup, FormControl, ToggleButton, ToggleButtonGroup, Jumbotron, MenuItem,
   SplitButton, Row, Col, ControlLabel} from "react-bootstrap";
 
@@ -437,7 +438,9 @@ handleChange(e) {
         <div>
             <h1>Thank You For Completing Our Servey!</h1>
             <br></br>
-            <p>insert button</p>
+            <Button bsSize="large" style={{color:'#79bf43', float:'right', fontWeight:'bold'}}>
+            <Link to="/dashboard">Insights Galore!</Link>
+            </Button>
         </div>
         ):<div></div>}
       </div>
