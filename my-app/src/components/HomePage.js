@@ -5,9 +5,9 @@ class HomePage extends Component {
   render() {
     return (
         <div>
-            <Jumbotron>    
+            <Jumbotron>
                 <div class="intro-heading"><h1>Welcome to the Team!</h1></div>
-                <div class="intro-lead-in"><h3>Thank you for joining</h3></div> 
+                <div class="intro-lead-in"><h3>Thank you for joining</h3></div>
             </Jumbotron>
             <ul>
                 <li><h4>This site is meant to help you manage your PIN Project. If you have formed a team and been approved, register your team and get cracking!</h4></li>
