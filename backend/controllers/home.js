@@ -10,6 +10,8 @@ ig.use({ access_token: igAccess });
 const Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
+var moment = require('moment');
+moment().format();
 /*
 INSTAGRAM-RELATED ROUTES
 */
@@ -69,6 +71,10 @@ router.get('/survey', (req, res) => {
 });
 
 router.post('/survey', (req, res) => {
+  /*
+  console.log(moment().hour());
+  console.log(moment().hours());
+  */
   models.Surveys.create(/*{
     zipcode: req.body.zipcode,
     state: req.body.state,
@@ -81,7 +87,8 @@ router.post('/survey', (req, res) => {
     age: req.body.age,
     ethnicity: req.body.ethnicity,
     gender: req.body.gender,
-    activities: req.body.activities
+    activities: req.body.activities,
+    hour:
   }*/
   {
     zipcode: "10010",
@@ -89,15 +96,16 @@ router.post('/survey', (req, res) => {
     state: "NY",
     country: "US",
     aloneOrGroup: "Alone",
-    people: "1",
+    people: 1,
     location: "Bethesda Fountain",
     duration: "30 Minutes",
     transportation: "Walked",
-    age: "21",
+    age: 21,
     ethnicity: "Asian",
     gender: "Male",
-    activities: "Photography",
-    weather: "Sunny"
+    activity: "Photography",
+    weather: "Sunny",
+    hour: 11
   })
   .then((data) => {
     res.json({
